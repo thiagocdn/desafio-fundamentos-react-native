@@ -74,11 +74,12 @@ const CartProvider: React.FC = ({ children }) => {
 
         setProducts([...products, newProductOnCart]);
 
-        await AsyncStorage.setItem(
-          '@GoMarketPlace: cart',
-          JSON.stringify([...products, newProductOnCart]),
-        );
       }
+
+      await AsyncStorage.setItem(
+        '@GoMarketPlace: cart',
+        JSON.stringify(products),
+      );
     },
     [products],
   );
@@ -120,10 +121,6 @@ const CartProvider: React.FC = ({ children }) => {
 
           setProducts(newList);
 
-          await AsyncStorage.setItem(
-            '@GoMarketPlace: cart',
-            JSON.stringify(newList),
-          );
         } else {
           const newList: Product[] = products.map(item => {
             if (item.id === id) {
@@ -141,12 +138,12 @@ const CartProvider: React.FC = ({ children }) => {
 
           setProducts(newList);
 
-          await AsyncStorage.setItem(
-            '@GoMarketPlace: cart',
-            JSON.stringify(newList),
-          );
         }
       }
+      await AsyncStorage.setItem(
+        '@GoMarketPlace: cart',
+        JSON.stringify(products),
+      );
     },
     [products],
   );
